@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Hier werden die Request bearbeitet
+ * @author Enma Ronquillo
+ *
+ * @version 1.0
+ */
 @RestController
 public class Controller {
 
@@ -18,6 +24,12 @@ public class Controller {
     @Autowired
     private PersonRepository personRepository;
 
+    /**
+     * User wird in DB gesucht und die mitgegebene Daten werden abgeglichen
+     * @param username
+     * @param password
+     * @return
+     */
     @PostMapping(value = "/blog")
     public String blog(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
         logger.info("Request /blog");
@@ -43,11 +55,25 @@ public class Controller {
     }
 
 
+    /**
+     * Speichert der neue User in der DB ein
+     * @param username
+     * @param password
+     * @param confPassword
+     * @param age
+     * @param gender
+     * @param state
+     * @return
+     */
     @RequestMapping(value = "/register",  method= RequestMethod.POST)
-    public String register(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "age") String age, @RequestParam(value = "gender") String gender, @RequestParam(value = "state") String state) {
+    public String register(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "confpPassword") String confPassword, @RequestParam(value = "age") String age, @RequestParam(value = "gender") String gender, @RequestParam(value = "state") String state) {
         logger.info("Request /register");
        // DAO dao = new DAO();
         /** Todo username, password & gender validation */
+        if (!confPassword.equals(password)){
+            logger.error("Passwort und ConfirmationPasswort stimmen nicht überein");
+            return "0";
+        }
         if(personRepository.findByUsername(username) != null){
             logger.error("Username ist vergeben");
             return "0";
@@ -77,6 +103,11 @@ public class Controller {
 
     }
 
+    /**
+     * Methode: Passwort wird mit SHA-256 verschlüsselt
+     * @param pass
+     * @return
+     */
     public String verschluesselung(String pass) {
 
         String generatedPassword = null;
