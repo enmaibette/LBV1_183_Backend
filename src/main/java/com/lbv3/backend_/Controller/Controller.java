@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 @RestController
 public class Controller {
 
-    private static final Logger logger = LoggerFactory.getLogger("ubs.com");
+    private static final Logger logger = LoggerFactory.getLogger("FILE");
 
     @Autowired
     private PersonRepository personRepository;
@@ -23,18 +23,21 @@ public class Controller {
         logger.info("Request /blog");
         Personen p = null;
         try {
+            logger.info("Person in DB gesucht");
             p = personRepository.findByUsername(username);
         } catch (Exception e){
+            logger.info("Keine Person mit dem Username: " + p.getUsername());
             e.printStackTrace();
+            return "0";
         }
 
         String pass = verschluesselung(password);
         if(pass.equals(p.getPassword())){
-            System.out.println("age: " + p.getAge());
-            return "1";
+            logger.info("Passwörter stimmen überein");
+            return "1"; // Passwörter stimmen überein
         }else{
-            System.out.println(pass);
-            return "0";
+            logger.error("Passwörter stimmen nicht überein");
+            return "0"; // Passwörter stimmen nicht überein
         }
 
     }
@@ -45,6 +48,14 @@ public class Controller {
         logger.info("Request /register");
        // DAO dao = new DAO();
         /** Todo username, password & gender validation */
+        if(personRepository.findByUsername(username) != null){
+            logger.error("Username ist vergeben");
+            return "0";
+        }
+        if(password.length() < 10){
+            logger.warn("Passwort zu kurz");
+            return "0";
+        }
         password = verschluesselung(password);
         Personen person = new Personen();
         person.setUsername(username);
@@ -55,12 +66,14 @@ public class Controller {
         person.setState(state);
 
        try{
+           logger.info(person.getUsername() + " wird in DB gespeichert");
            personRepository.save(person);
        }catch (Exception e){
+           logger.error("Fehler beim speichern von: " + person.getUsername());
            e.printStackTrace();
-           return "0";
+           return "0"; // 0 Heisst fehler passiert
        }
-        return "1";
+        return "1"; // Methode erfolgreich ausgeführt
 
     }
 
@@ -68,6 +81,7 @@ public class Controller {
 
         String generatedPassword = null;
         try {
+            logger.info("Password wird verschlüsselt");
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(pass.getBytes());
@@ -81,6 +95,7 @@ public class Controller {
         }
         catch (NoSuchAlgorithmException e)
         {
+            logger.error("Fehler beim der Verschlüsselung");
             e.printStackTrace();
         }
 
