@@ -2,6 +2,7 @@ package com.lbv3.backend_.Controller;
 
 import com.lbv3.backend_.dao.PersonRepository;
 import com.lbv3.backend_.model.Personen;
+import com.lbv3.backend_.model.RegisterDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * Hier werden die Request bearbeitet
- * @author Enma Ronquillo
+ * @author Enma Ronquillo, Lara Akgün
  *
  * @version 1.0
  */
@@ -43,7 +44,7 @@ public class Controller {
             return "0";
         }
 
-        String pass = verschluesselung(password);
+        String pass = hashPassword(password);
         if(pass.equals(p.getPassword())){
             logger.info("Passwörter stimmen überein");
             return "1"; // Passwörter stimmen überein
@@ -57,50 +58,48 @@ public class Controller {
 
     /**
      * Speichert der neue User in der DB ein
-     * @param username
-     * @param password
-     * @param confPassword
-     * @param age
-     * @param gender
-     * @param state
      * @return
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/register",  method= RequestMethod.POST)
-    public String register(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "confpPassword") String confPassword, @RequestParam(value = "age") String age, @RequestParam(value = "gender") String gender, @RequestParam(value = "state") String state) {
+    public String register(@RequestBody RegisterDTO body) {
         logger.info("Request /register");
-       // DAO dao = new DAO();
-        /** Todo username, password & gender validation */
-        if (!confPassword.equals(password)){
-            logger.error("Passwort und ConfirmationPasswort stimmen nicht überein");
-            return "0";
+        if (!isNotNullAndEmpty(body.getUsername())) {
+            return "Username is empty";
         }
-        if(personRepository.findByUsername(username) != null){
+        if(personRepository.findByUsername(body.getUsername()) != null){
             logger.error("Username ist vergeben");
-            return "0";
+            return "Username ist vergeben";
         }
-        if(password.length() < 10){
+        if(body.getPassword() == null || body.getPassword().length() < 10){
             logger.warn("Passwort zu kurz");
-            return "0";
+            return "Passwort zu kurz";
         }
-        password = verschluesselung(password);
+        if (!isNotNullAndEmpty(body.getGender())) {
+            return "Gender is empty";
+        }
+        if (!isNotNullAndEmpty(body.getState())) {
+            return "State is empty";
+        }
+        String password = hashPassword(body.getPassword());
         Personen person = new Personen();
-        person.setUsername(username);
+        person.setUsername(body.getUsername());
         person.setPassword(password);
         System.out.println("pass " + password);
-        person.setAge(Integer.parseInt(age));
-        person.setGender(gender);
-        person.setState(state);
+        person.setAge(body.getAge());
+        person.setGender(body.getGender());
+        person.setState(body.getState());
 
        try{
            logger.info(person.getUsername() + " wird in DB gespeichert");
            personRepository.save(person);
        }catch (Exception e){
-           logger.error("Fehler beim speichern von: " + person.getUsername());
+           String txt = "Fehler beim speichern von: " + person.getUsername();
+           logger.error(txt);
            e.printStackTrace();
-           return "0"; // 0 Heisst fehler passiert
+           return txt; // 0 Heisst fehler passiert
        }
         return "1"; // Methode erfolgreich ausgeführt
-
     }
 
     /**
@@ -108,7 +107,7 @@ public class Controller {
      * @param pass
      * @return
      */
-    public String verschluesselung(String pass) {
+    public String hashPassword(String pass) {
 
         String generatedPassword = null;
         try {
@@ -131,5 +130,14 @@ public class Controller {
         }
 
         return generatedPassword;
+    }
+
+    private boolean isNotNullAndEmpty(String value){
+        if (value != null && !value.isEmpty()){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
