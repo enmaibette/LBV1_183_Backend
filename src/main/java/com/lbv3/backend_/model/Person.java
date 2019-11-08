@@ -4,14 +4,14 @@ import javax.persistence.*;
 
 
 /**
- *Modelklasse -> Person
+ * Modelclass Person
+ * @author Lara Akgün
  * @author Enma Ronquillo
- *
- * @version 1.0
+ * @version 08.11.2019
  */
 @Entity
 @Table(name="person")
-public class Personen {
+public class Person {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,104 +27,66 @@ public class Personen {
     @Column(name = "state")
     private String state;
 
-    /**
-     * leeres Konstruktor
-     */
-    public Personen() {
+
+    public Person() {
     }
 
-    /**
-     *
-     * @return
-     */
+
     public int getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     */
+
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public String getUsername() {
         return username;
     }
 
-    /**
-     *
-     * @param username
-     */
+
     public void setUsername(String username) {
         this.username = username;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public String getPassword() {
         return password;
     }
 
-    /**
-     *
-     * @param password
-     */
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public int getAge() {
         return age;
     }
 
-    /**
-     *
-     * @param age
-     */
+
     public void setAge(int age) {
         this.age = age;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public String getGender() {
         return gender;
     }
 
-    /**
-     *
-     * @param gender
-     */
+
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public String getState() {
         return state;
     }
 
-    /**
-     *
-     * @param state
-     */
+
     public void setState(String state) {
         this.state = state;
     }

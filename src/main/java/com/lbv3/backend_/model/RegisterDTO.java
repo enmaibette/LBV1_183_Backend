@@ -1,5 +1,11 @@
 package com.lbv3.backend_.model;
 
+/**
+ * RegisterDTO
+ * @author Lara Akgün
+ * @author Enma Ronquillo
+ * @version 08.11.2019
+ */
 public class RegisterDTO {
 
     private String username;

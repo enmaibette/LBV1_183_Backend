@@ -1,16 +1,16 @@
 package com.lbv3.backend_.dao;
 
-import com.lbv3.backend_.model.Personen;
+import com.lbv3.backend_.model.Person;
 import org.springframework.data.repository.CrudRepository;
 
 
 /**
+ * PersonRepository
+ * @author Lara Akgün
  * @author Enma Ronquillo
- *
- * @version 1.0
+ * @version 08.11.2019
  */
-public interface PersonRepository extends CrudRepository<Personen, Integer> {
+public interface PersonRepository extends CrudRepository<Person, Integer> {
 
-    Personen findByUsername(String username);
-
+    Person findByUsername(String username);
 }

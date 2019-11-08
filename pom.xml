@@ -26,15 +26,6 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!--&lt;!&ndash; Hibernate 4.3.6 Final &ndash;&gt;
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>4.3.6.Final</version>
-		</dependency>
-		&lt;!&ndash; Mysql Connector &ndash;&gt;
-	-->
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
