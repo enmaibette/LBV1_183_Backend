@@ -53,6 +53,9 @@ public class Controller {
         if (!isNotNullAndEmpty(body.getState())) {
             return "State is empty";
         }
+        if (body.getAge() <0){
+            return "Age needs to be more than 0";
+        }
 
         //Writes user in DB
         String password = hashPassword(body.getPassword());
