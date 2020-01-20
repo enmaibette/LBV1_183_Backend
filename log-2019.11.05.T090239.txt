@@ -1,0 +1,9 @@
+09:03:43.822 [http-nio-8080-exec-1] INFO  FILE - Request /register
+09:03:44.181 [http-nio-8080-exec-1] INFO  FILE - Password wird verschlüsselt
+09:03:44.182 [http-nio-8080-exec-1] INFO  FILE - s8 wird in DB gespeichert
+09:03:53.442 [http-nio-8080-exec-3] INFO  FILE - Request /register
+09:03:53.451 [http-nio-8080-exec-3] INFO  FILE - Username ist vergeben
+09:04:01.821 [http-nio-8080-exec-4] INFO  FILE - Request /register
+09:04:01.823 [http-nio-8080-exec-4] INFO  FILE - Username ist vergeben
+09:05:34.261 [http-nio-8080-exec-7] INFO  FILE - Request /register
+09:05:34.264 [http-nio-8080-exec-7] INFO  FILE - Passwort zu kurz
