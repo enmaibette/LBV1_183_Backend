@@ -26,6 +26,15 @@ public class Controller {
     @Autowired
     private PersonRepository personRepository;
 
+    /**
+     * 
+     * @return Json string
+     */
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value = "/productList", method = RequestMethod.POST)
+    public Json productList() {
+        return Json(new {id="1", product="product", price="11.50", description="description"});
+    }
 
     /**
      * Saves the new user in the DB
