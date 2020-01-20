@@ -1,0 +1,31 @@
+13:43:05.912 [main] INFO  c.lbv3.backend_.BackendApplication - Starting BackendApplication on LAPTOP-UPDC9SBE with PID 346744 (C:\Users\enmai\Desktop\Schule\Garavaldi\backend_\target\classes started by enmai in C:\Users\enmai\Desktop\Schule\Garavaldi\backend_)
+13:43:05.922 [main] INFO  c.lbv3.backend_.BackendApplication - No active profile set, falling back to default profiles: default
+13:43:07.742 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+13:43:08.059 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 302ms. Found 2 repository interfaces.
+13:43:08.641 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$eb41a6ce] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+13:43:08.705 [main] INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+13:43:08.725 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+13:43:09.717 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+13:43:09.734 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+13:43:09.734 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+13:43:09.737 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+13:43:09.980 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+13:43:09.980 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3947 ms
+13:43:10.258 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+13:43:10.372 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.6.Final}
+13:43:10.649 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+13:43:10.792 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+13:43:11.248 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+13:43:11.287 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+13:43:12.583 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+13:43:12.608 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+13:43:12.693 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+13:43:13.381 [main] INFO  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: c4e8a5d7-69c1-4074-abcb-abc2ce9a7f48
+
+13:43:13.864 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72c1bf75, org.springframework.security.web.context.SecurityContextPersistenceFilter@50b624da, org.springframework.security.web.header.HeaderWriterFilter@63243c8f, org.springframework.web.filter.CorsFilter@43a8bd35, org.springframework.security.web.authentication.logout.LogoutFilter@18bc1064, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3892802b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a0ee80, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6fb219dd, org.springframework.security.web.session.SessionManagementFilter@2ba08f26, org.springframework.security.web.access.ExceptionTranslationFilter@dbcf7c3]
+13:43:13.972 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+13:43:14.972 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+13:43:15.017 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+13:43:15.022 [main] INFO  c.lbv3.backend_.BackendApplication - Started BackendApplication in 9.904 seconds (JVM running for 11.17)
