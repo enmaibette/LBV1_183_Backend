@@ -1,7 +1,9 @@
 package com.lbv3.backend_.controller;
 
 import com.lbv3.backend_.dao.PersonRepository;
+import com.lbv3.backend_.dao.ProductRepository;
 import com.lbv3.backend_.model.Person;
+import com.lbv3.backend_.model.Produkt;
 import com.lbv3.backend_.model.RegisterDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 /**
  * Handles response and requests from frontend
@@ -26,14 +29,25 @@ public class Controller {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     /**
      * 
      * @return Json string
      */
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value = "/productList", method = RequestMethod.POST)
-    public Json productList() {
-        return Json(new {id="1", product="product", price="11.50", description="description"});
+    @RequestMapping(value = "/productList", method = RequestMethod.POST, produces = "application/json")
+    public ArrayList<Produkt> productList() {
+     /*   for(int i = 0; i < 10; i++) {
+           Produkt p = new Produkt();
+           p.setDescription("new Description " + i);
+           p.setPrice(10.50);
+           p.setProduct("Product " + i);
+           productRepository.save(p);
+        }*/
+        ArrayList<Produkt> products = productRepository.findAll();
+        return products;
     }
 
     /**
